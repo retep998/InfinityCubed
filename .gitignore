@@ -1,0 +1,14 @@
+*.pdb
+*.opensdf
+*.sdf
+*.suo
+*.tlog
+*.lastbuildstate
+*.log
+*.unsuccessfulbuild
+*.obj
+*.idb
+*.pch
+*.ipch
+*.exe
+*.ilk
