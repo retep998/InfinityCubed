@@ -1,0 +1,6 @@
+Fragment shader was successfully compiled to run on hardware.
+ 
+Vertex shader was successfully compiled to run on hardware.
+ 
+Vertex shader(s) linked, fragment shader(s) linked.
+

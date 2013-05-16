@@ -1,4 +1,5 @@
 #pragma once
 namespace World {
-    void Play();
+    void Init();
+    void Render();
 }
