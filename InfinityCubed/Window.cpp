@@ -9,6 +9,7 @@ namespace Window {
     uint32_t FWidth, FHeight;
     string Title = "InfinityCubed";
     bool Fullscreen = false;
+    const sf::ContextSettings Context(32, 0, 4, 2, 0);
     void Init() {
         auto v = sf::VideoMode::getFullscreenModes()[0];
         FWidth = v.width;
@@ -29,13 +30,19 @@ namespace Window {
             Log::Write("ERROR: You need something newer than GLX 1.1");
             throw; break;
         default:
-            Log::Write("ERROR: Unknown error");
+            Log::Write("ERROR: Unknown GLEW error code " + to_string(err));
+            throw;
+        }
+        if (!GLEW_VERSION_2_0) {
+            Log::Write("ERROR: You need at least OpenGL 2.0");
+            Log::Write("Please update your drivers and/or buy a new GPU");
             throw;
         }
     }
     void Create(bool fullscreen) {
-        if (fullscreen) Window->create(sf::VideoMode(FWidth, FHeight, 32), Title, sf::Style::Default | sf::Style::Fullscreen, sf::ContextSettings(32, 0, 0, 3, 3));
-        else Window->create(sf::VideoMode(WWidth, WHeight, 32), Title, sf::Style::Default, sf::ContextSettings(32, 0, 0, 3, 3));
+        if (fullscreen) Window->create(sf::VideoMode(FWidth, FHeight, 32), Title, sf::Style::Default | sf::Style::Fullscreen, Context);
+        else Window->create(sf::VideoMode(WWidth, WHeight, 32), Title, sf::Style::Default, Context);
+        Window->setFramerateLimit(100);
         AdjustView(Window->getSize().x, Window->getSize().y);
         Fullscreen = fullscreen;
         glEnable(GL_CULL_FACE);
@@ -44,6 +51,7 @@ namespace Window {
         glDepthFunc(GL_LESS);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_PROGRAM_POINT_SIZE);
     }
     void AdjustView(uint32_t w, uint32_t h) {
         Width = w;
