@@ -32,16 +32,18 @@ namespace Window {
             Log::Write("ERROR: Unknown error");
             throw;
         }
-        //glEnable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LESS);
     }
     void Create(bool fullscreen) {
         if (fullscreen) Window->create(sf::VideoMode(FWidth, FHeight, 32), Title, sf::Style::Default | sf::Style::Fullscreen, sf::ContextSettings(32, 0, 0, 3, 3));
         else Window->create(sf::VideoMode(WWidth, WHeight, 32), Title, sf::Style::Default, sf::ContextSettings(32, 0, 0, 3, 3));
         AdjustView(Window->getSize().x, Window->getSize().y);
         Fullscreen = fullscreen;
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
     void AdjustView(uint32_t w, uint32_t h) {
         Width = w;
@@ -89,6 +91,9 @@ namespace Window {
             switch (e.key.code) {
             case sf::Keyboard::F11:
                 Create(!Fullscreen);
+                break;
+            case sf::Keyboard::Escape:
+                Game::Over = true;
                 break;
             }
             break;
