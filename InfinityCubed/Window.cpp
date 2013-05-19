@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Game.h"
 #include "Log.h"
+#include "Time.h"
 namespace Window {
     sf::Window * Window;
     uint32_t Width, Height;
@@ -42,7 +43,6 @@ namespace Window {
     void Create(bool fullscreen) {
         if (fullscreen) Window->create(sf::VideoMode(FWidth, FHeight, 32), Title, sf::Style::Default | sf::Style::Fullscreen, Context);
         else Window->create(sf::VideoMode(WWidth, WHeight, 32), Title, sf::Style::Default, Context);
-        Window->setFramerateLimit(100);
         AdjustView(Window->getSize().x, Window->getSize().y);
         Fullscreen = fullscreen;
         glEnable(GL_CULL_FACE);
@@ -82,6 +82,7 @@ namespace Window {
             Log::Write("ERROR: Unknown OpenGL error code " + to_string(err));
             throw;
         }
+		Window->setTitle(Title + " at " + to_string(Time::FPS) + " FPS");
         Window->display();
         sf::Event e;
         while (Window->pollEvent(e)) switch (e.type) {

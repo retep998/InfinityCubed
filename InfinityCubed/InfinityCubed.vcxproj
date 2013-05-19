@@ -91,18 +91,19 @@
     </ClCompile>
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
-    <ClInclude Include="BlockIterator.h" />
     <ClInclude Include="Chunk.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="World.h" />
