@@ -1,5 +1,8 @@
+#version 150
 layout(location = 0) out vec4 Output;
-in vec3 Color;
+in Data {
+	vec3 Color;
+} DataIn;
 void main(void) {
-	Output = vec4(Color, 1);
+	Output = vec4(DataIn.Color, 1);
 }

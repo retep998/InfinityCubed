@@ -14,6 +14,7 @@ Shader::Shader(string name) {
     Shaders.insert(i, make_pair(name, p));
     auto AddShader = [&](path name, GLenum type) {
         if (!exists(name)) return;
+        memset(buf, 0, 0x1000);
         GLint l = static_cast<GLint>(file_size(name));
         GLuint s = glCreateShader(type);
         ifstream f(name);

@@ -45,7 +45,7 @@ namespace Window {
         else Window->create(sf::VideoMode(WWidth, WHeight, 32), Title, sf::Style::Default, Context);
         AdjustView(Window->getSize().x, Window->getSize().y);
         Fullscreen = fullscreen;
-        glEnable(GL_CULL_FACE);
+        //glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
@@ -82,7 +82,7 @@ namespace Window {
             Log::Write("ERROR: Unknown OpenGL error code " + to_string(err));
             throw;
         }
-		Window->setTitle(Title + " at " + to_string(Time::FPS) + " FPS");
+        Window->setTitle(Title + " at " + to_string(Time::FPS) + " FPS");
         Window->display();
         sf::Event e;
         while (Window->pollEvent(e)) switch (e.type) {
