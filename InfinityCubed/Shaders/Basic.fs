@@ -1,5 +1,7 @@
 #version 150
+
 layout(location = 0) out vec4 Output;
+
 in Data {
 	vec3 Color;
 } DataIn;

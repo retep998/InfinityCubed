@@ -19,9 +19,9 @@
 #include <list>
 #include <map>
 #include <string>
+#include <thread>
 #include <tuple>
 #include <vector>
-using namespace std;
-using namespace std::tr1;
-using namespace std::tr2;
-using namespace std::tr2::sys;
+
+#include "Window.hpp"
+#include "Game.hpp"

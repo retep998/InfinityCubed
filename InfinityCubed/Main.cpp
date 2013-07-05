@@ -1,5 +1,5 @@
-#include "Main.h"
-#include "Game.h"
-int main() {
-    Game::Play();
+#include "Main.hpp"
+int main()
+{
+    Game { };
 }
