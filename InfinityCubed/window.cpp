@@ -1,3 +1,46 @@
+#include "window.hpp"
+#include <SFML/Window/Event.hpp>
+
+namespace ic3 {
+    window::window() : _window{}, _context{32, 0, 4, 3, 3}, _title{"InfinityCubed"}, _winwidth{800}, _winheight{600}, _fullwidth{1920}, _fullheight{1080}, _fullscreen{false} {
+        recreate();
+        std::printf("Window initialized\n");
+    }
+
+    void window::recreate() {
+        _window.create(
+            _fullscreen ? sf::VideoMode{_fullwidth, _fullheight, 32} : sf::VideoMode{_winwidth, _winheight, 32},
+            _title,
+            _fullscreen ? sf::Style::Fullscreen : sf::Style::Default,
+            _context);
+    }
+
+    bool window::update() {
+        _window.display();
+        sf::Event e{};
+        while (_window.pollEvent(e)) switch (e.type) {
+        case sf::Event::EventType::Closed: return false;
+        case sf::Event::EventType::GainedFocus: break;
+        case sf::Event::EventType::JoystickButtonPressed: break;
+        case sf::Event::EventType::JoystickButtonReleased: break;
+        case sf::Event::EventType::JoystickConnected: break;
+        case sf::Event::EventType::JoystickDisconnected: break;
+        case sf::Event::EventType::JoystickMoved: break;
+        case sf::Event::EventType::KeyPressed: break;
+        case sf::Event::EventType::KeyReleased: break;
+        case sf::Event::EventType::LostFocus: break;
+        case sf::Event::EventType::MouseButtonPressed: break;
+        case sf::Event::EventType::MouseButtonReleased: break;
+        case sf::Event::EventType::MouseEntered: break;
+        case sf::Event::EventType::MouseLeft: break;
+        case sf::Event::EventType::MouseMoved: break;
+        case sf::Event::EventType::MouseWheelMoved: break;
+        case sf::Event::EventType::Resized: break;
+        case sf::Event::EventType::TextEntered: break;
+        }
+        return true;
+    }
+}
 //#include "Main.h"
 //#include "Window.h"
 //#include "Game.h"
