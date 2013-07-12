@@ -15,26 +15,8 @@
 // You should have received a copy of the GNU Affero General Public License //
 // along with this program. If not, see < http://www.gnu.org/licenses/ >.   //
 //////////////////////////////////////////////////////////////////////////////
-#include "game.hpp"
 #include "exception.hpp"
-#include <cstdio>
-#include <functional>
 
 namespace ic3 {
-    game::game() : _window{}, _timer{}, _over{false} {
-        std::printf("Game initialized\n");
-        try {
-            for (;;) {
-                _window.update();
-                _timer.update();
-                _window.display_fps(_timer.fps());
-            }
-        } catch (shutdown_request e) {
-            std::printf("Shutdown requested: %s\n", e.what());
-        }
-    }
-
-    game::~game() {
-        std::printf("Stopping game\n");
-    }
+    shutdown_request::shutdown_request(char const * const & str) : std::exception{str} {}
 }
